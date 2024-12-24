@@ -1,0 +1,66 @@
+-- An Inner Join will combine the rows of tables only if the condition specified in the join
+--  is met. An Outer Join will also combine rows, but in the event that no potential match exists,
+--  null values will be provided for the absent data. There are three types of OUTER JOIN:
+--  FULL, LEFT, and RIGHT.
+-- FULL OUTER JOIN will return results from both tables. Any rows that do not have a match between
+--  tables will have missing data which will be shown as "null". Take the following tables:
+--      | id | character |  species  |
+--      | -- | --------- | --------- |
+--      |1   |'Bugs'     |'Rabbit'   |
+--      |2   |'Daffy'    |'Duck'     |
+--      |3   |'Foghorn'  |'Chicken'  |
+--      | id | character | catchphrase |
+--      | -- | ----------------- | --------- |
+--      |1   |'Daffy' |'Youuu're deththpicable!'  |
+--      |2   |'Elmer' |'I'm hunting wabbits.' |
+--      |3   |'Porky' |'That's all folks!' |
+-- When we OUTER JOIN these two tables ON the character column, the missing data will be null. This is
+--  useful for finding rows where such a match does not exist, such as characters with no catchphrases,
+--  or catchphrases with no characters.
+--      SELECT * FROM table_left FULL OUTER JOIN table_right ON table_left.character = table_right.character
+-- The output is as follows:
+--      |  id  | character |  species  |  id  | character |        catchphrase        |
+--      | ---- | --------- | --------- | ---- |-----------|----------|
+--      |1     |'Bugs'     |'Rabbit'   |1     |'Daffy'    |'Youuu're deththpicable!'  |
+--      |2     |'Daffy'    |'Duck'     |2     |'Elmer'    |'I'm hunting wabbits.'     |
+--      |3     |'Foghorn'  |'Chicken'  |null  |null       |null                       |
+--      |null  |null       |null       |3     |'Porky'    |'That's all folks!'        |
+-- FULL OUTER JOIN is supported by most database engines, but not H2.
+-- Note that there is no record in the right table for Foghorn, and there is no record in the left
+-- table for Porky. When we OUTER JOIN these two tables ON the character column, the missing data
+-- will be null. This is useful for finding rows where such a match does not exist, such as characters
+-- with no catchphrases, or catchphrases with no characters.
+-- LEFT OUTER JOIN will return all data from table_left, and any missing data from table_right
+--  will be null.
+-- RIGHT OUTER JOIN will return all data from table_right, and any missing data from table_left
+-- will be null.
+-- Take the following class, student, and textbook tables.
+--      class table
+--      | id |teacher_name   |class_title|
+--      | -- | ------------- | --------- |
+--      |1   |'Ms. Lovelace' |'Physics'  |
+--      |2   |'Ms. Lovelace' |'Math'     |
+--      |3   |'Mr. McCarthy' |'Writing'  |
+--      |4   |'Ms. Goodall'  |'Biology'  |
+--      student table
+--      | id | student_name      |class_title|
+--      | -- | ----------------- | --------- |
+--      |1   |'John Stewart'     |'Writing'  |
+--      |2   |'Stephen Colbert'  |'Physics'  |
+--      |3   |'Samantha Bee'     |'Math'     |
+--      |4   |'Aasif Mandvi'     |'Writing'  |
+--      |5   |'Robert Riggle'    |'Physics'  |
+--      |6   |'Jessica Williams' |'Art'      |
+--      textbook table
+--      | id |class_title|              textbook_title        |
+--      | -- | ----------------- | --------- |
+--      |1   |'Physics'  |'Motion 101'                        |
+--      |2   |'Math'     |'What Even Is Modulus Anyway?'      |
+--      |3   |'Biology'  |'Lions, Tigers, and Organs 5th ed'  |
+--      |4   |'Writing'  |'The Story Circle Workbook'         |
+--      |5   |'Art'      |'Teenage Mutant Ninja Turtles #10'  |
+-- TODO:  Use a LEFT OUTER JOIN to combine the class (left side) and student (right side) tables
+--  using the class_title column as the join on column. This means that when no student exists for a
+--  class, a row with a NULL class will be in the resulting query. Hint: You should start with
+--  `SELECT * FROM class` ... and remember to resolve ambiguous column names by referencing columns
+--  as table.column, such as student.student_name

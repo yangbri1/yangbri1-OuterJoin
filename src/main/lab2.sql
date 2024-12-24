@@ -1,0 +1,35 @@
+-- LEFT OUTER JOIN will return all data from table_left, and any missing data from table_right
+--  will be null.
+
+-- RIGHT OUTER JOIN will return all data from table_right, and any missing data from table_left
+-- will be null.-- Take the following class, student, and textbook tables.
+
+--      class table
+--      | id |teacher_name   |class_title|
+--      | -- | ------------- | --------- |
+--      |1   |'Ms. Lovelace' |'Physics'  |
+--      |2   |'Ms. Lovelace' |'Math'     |
+--      |3   |'Mr. McCarthy' |'Writing'  |
+--      |4   |'Ms. Goodall'  |'Biology'  |
+--      student table
+--      | id | student_name      |class_title|
+--      | -- | ----------------- | --------- |
+--      |1   |'John Stewart'     |'Writing'  |
+--      |2   |'Stephen Colbert'  |'Physics'  |
+--      |3   |'Samantha Bee'     |'Math'     |
+--      |4   |'Aasif Mandvi'     |'Writing'  |
+--      |5   |'Robert Riggle'    |'Physics'  |
+--      |6   |'Jessica Williams' |'Art'      |
+--      textbook table
+--      | id |class_title|              textbook_title        |
+--      | -- | ----------------- | --------- |
+--      |1   |'Physics'  |'Motion 101'                        |
+--      |2   |'Math'     |'What Even Is Modulus Anyway?'      |
+--      |3   |'Biology'  |'Lions, Tigers, and Organs 5th ed'  |
+--      |4   |'Writing'  |'The Story Circle Workbook'         |
+--      |5   |'Art'      |'Teenage Mutant Ninja Turtles #10'  |
+-- TODO: Use a RIGHT OUTER JOIN to combine the class (left side) and textbook (right side) tables
+--  using the class column as the join on column. This means that when no class exists for a
+--  textbook, a row with a NULL class will be in the resulting query. Hint: You should start with
+--  `SELECT * FROM class` ... and remember to resolve ambiguous column names by referencing columns
+--  as table.column, such as student.student_name
